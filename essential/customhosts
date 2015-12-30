@@ -1,0 +1,11 @@
+#customhosts
+#inventory configs for my cluster
+[db]
+db  ansible_ssh_user=ubuntu
+
+[www]
+web  ansible_ssh_user=ubuntu
+web2 ansible_ssh_user=ubuntu
+
+[lb]
+lb

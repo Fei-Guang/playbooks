@@ -1,0 +1,19 @@
+---
+- name: creating ceph group
+  hosts: k8s
+  sudo: yes
+  tasks:
+    - group: name=ceph state=present
+
+- name: creating ceph user
+  hosts: k8s
+  sudo: yes
+  tasks:
+    - user: name=ceph group=ceph state=present
+    - file: path=/home/ceph/.ssh/ssl state=directory
+
+- name: add ipc key to ceph
+  hosts: k8s
+  sudo: True
+  tasks:
+    - command: cp ~/.ssh/authorized_keys /home/ceph/.ssh/authorized_keys

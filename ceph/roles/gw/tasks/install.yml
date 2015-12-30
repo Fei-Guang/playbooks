@@ -1,0 +1,8 @@
+---
+# essential tasks. should run on all nodes
+- name: install radosgw package
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+    - radosgw
+
+

@@ -1,0 +1,15 @@
+---
+- hosts: db
+  sudo: yes
+  tasks: 
+    - apt: name=rabbitmq-server
+
+- hosts: db
+  tasks:
+    - rabbitmq_user: user=openstack
+                 password=os123
+                 vhost=/
+                 configure_priv=.*
+                 read_priv=.*
+                 write_priv=.*
+                 state=present

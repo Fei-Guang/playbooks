@@ -1,0 +1,11 @@
+---
+#www.yml : playbook for web servers
+- hosts: gate
+  remote_user: ubuntu
+  sudo: yes
+  pre_tasks:
+     - shell: echo 'I":" Beginning to set gateway..'
+  roles:
+     - gw
+  post_tasks:
+     - shell: echo 'I":" Done'

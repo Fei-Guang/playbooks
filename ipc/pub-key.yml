@@ -1,0 +1,20 @@
+---
+- name: creating ceph group
+  hosts: web2
+  sudo: yes
+  tasks:
+    - group: name=ceph state=present
+
+- name: creating ceph user
+  hosts: web2
+  sudo: yes
+  tasks:
+    - user: name=ceph group=ceph state=present
+
+- name: add SSH authorized key
+  hosts: web2
+  sudo: True
+  tasks:
+    - authorized_key:
+        user=ceph
+        key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"

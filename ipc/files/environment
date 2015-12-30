@@ -1,0 +1,5 @@
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+http_proxy="http://proxy.houston.hpecorp.net:8080"
+https_proxy="http://proxy.houston.hpecorp.net:8080"
+no_proxy="8.0.0.0/24"
+

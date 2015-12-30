@@ -1,0 +1,15 @@
+---
+  - hosts: db
+    remote_user: ubuntu
+    sudo: yes
+
+    vars:
+      utf8: true
+      mysqld:
+        #bind_address: {{ ansible_eth0.ipv4.address }}
+        mysql_root_password: os123
+        key_buffer: 16M
+
+    tasks:
+      # - when: mysqld.mysql_root_password is defined
+      - command: echo hello {{ mysqld.mysql_root_password }}
