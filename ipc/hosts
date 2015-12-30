@@ -1,0 +1,12 @@
+gate ansible_ssh_user=ceph
+monit
+ds2
+web
+web2
+k8s
+db
+
+[IPC]
+gate ansible_ssh_user=ceph
+kube
+monit

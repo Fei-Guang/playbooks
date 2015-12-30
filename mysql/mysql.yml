@@ -1,0 +1,15 @@
+---
+  - hosts: db
+    sudo: yes
+    vars:
+      utf8: true
+      mysql_root_password: os123
+      mysqld:
+        bind_address: {{ ansible_eth0.ipv4.address }}
+        key_buffer: 16M
+
+    tasks:
+      - include: tasks/setup.yml
+
+    handlers:
+      - include: handlers/handlers.yml

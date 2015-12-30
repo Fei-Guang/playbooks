@@ -1,0 +1,6 @@
+#customhosts
+#inventory configs for my cluster
+[gw]
+gate  ansible_ssh_user=ubuntu
+ds2
+
