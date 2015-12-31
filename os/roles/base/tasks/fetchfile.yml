@@ -1,0 +1,4 @@
+---
+- name: fetch conf
+  sudo: yes
+  fetch: src=/etc/apache2/apache2.conf dest=download/apache2.conf flat=yes
