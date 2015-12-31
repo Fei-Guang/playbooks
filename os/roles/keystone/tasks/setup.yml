@@ -1,8 +1,16 @@
 ---
 # essential tasks. should run on all nodes
-- name: install radosgw package
-  apt: name={{item}} state=present update_cache=yes
-  with_items:
-    - radosgw
+- name: install python-mysqldb
+  apt: name=python-mysqldb
+
+- name: CREATE DATABASE keystone
+  mysql_db: name={{ role_name }} state=present
+  
+- name: Create db user keystone
+  mysql_user: login_user=root login_password={{ mysql_root_password }}
+              name={{ role_name }}  password=os123
+              priv=keystone.*::ALL  state=present
+  
+
 
 

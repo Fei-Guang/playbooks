@@ -5,7 +5,7 @@
       utf8: true
       mysql_root_password: os123
       mysqld:
-        bind_address: {{ ansible_eth0.ipv4.address }}
+        bind_address: "{{ ansible_eth0.ipv4.address }}"
         key_buffer: 16M
 
     tasks:

@@ -1,6 +1,9 @@
 ---
+  - name: install mysql python client
+    apt: name=python-mysqldb
+
   - name: install mysql-server
-    action: apt name=mysql-server
+    action: apt name=mariadb-server
     notify:
       - mysql_secure_installation
 
