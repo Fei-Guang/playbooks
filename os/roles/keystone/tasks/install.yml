@@ -1,0 +1,28 @@
+---
+# essential tasks. should run on all nodes
+- name: install keystone package
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+    - keystone
+    - python-openstackclient
+    - apache2 
+    - libapache2-mod-wsgi
+    - memcached
+    - python-memcache
+
+- name: disable keystone from startup
+  command: echo "manual" > /etc/init/keystone.override
+
+- name: generate token
+  command: openssl rand -hex 10
+  register: token
+
+- name: setup keystone 
+  ini_file: dest=/etc/keystone/keystone.conf
+            section={{ item.section }}
+            option={{ item.option }}
+            value={{ item.value }}
+            backup=yes
+  with_items:
+    - { section: 'DEFAULT', option: 'admin_token', value: '{{ token.stdout_lines }}'}
+
