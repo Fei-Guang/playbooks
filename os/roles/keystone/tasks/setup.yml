@@ -4,12 +4,12 @@
   apt: name=python-mysqldb
 
 - name: CREATE DATABASE keystone
-  mysql_db: name={{ role_name }} state=present
+  mysql_db: login_user=root login_password={{ mysql_root_password }} name={{ role_name }} state=present
   
 - name: Create db user keystone
   mysql_user: login_user=root login_password={{ mysql_root_password }}
               name={{ role_name }}  password=os123
-              priv=keystone.*::ALL  state=present
+              priv={{ role_name }}.*:ALL  state=present
   
 
 
