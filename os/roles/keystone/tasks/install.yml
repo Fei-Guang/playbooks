@@ -24,5 +24,7 @@
             value={{ item.value }}
             backup=yes
   with_items:
-    - { section: 'DEFAULT', option: 'admin_token', value: '{{ token.stdout_lines }}'}
-
+    - { section: 'DEFAULT', option: 'admin_token', value: '{{ token.stdout }}'}
+    - { section: 'database', option: 'connection', value: 'mysql://{{ role_name }}:{{ mysql_root_password }}@{{ ansible_hostname }}/{{ role_name }}'}
+    - { section: 'memcache', option: 'servers', value: 'localhost:11211'}
+    - { section: 'token', option: 'provider', value: 'keystone.token.providers.uuid.Provider'}
