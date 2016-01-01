@@ -1,0 +1,9 @@
+---
+- name: fetch conf
+  hosts: gate
+  sudo: yes
+  tasks: 
+    - copy: src={{ item.src}} dest={{ item.dest}} 
+      with_items:
+        - {src: 'download/apache2.conf', dest: '/etc/apache2/apache2.conf'}
+        - {src: 'download/default-ssl.conf', dest: '/etc/apache2/sites-available/default-ssl.conf'}

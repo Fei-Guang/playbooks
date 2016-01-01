@@ -1,0 +1,7 @@
+#customhosts
+#inventory configs for my cluster
+[cluser]
+k8s
+k8s1
+
+

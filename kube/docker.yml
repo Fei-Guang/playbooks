@@ -1,0 +1,9 @@
+---
+- hosts: k8s:k8s1
+  sudo: yes
+  roles:
+    - ~/galaxy/angstwad.docker_ubuntu
+  post_tasks:
+    - apt: name=bridge-utils state=present
+    - lineinfile: dest=/etc/default/docker
+                  line="export http_proxy="http://proxy.houston.hpecorp.net:8080""
