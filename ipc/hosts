@@ -5,6 +5,7 @@ web
 web2
 k8s
 db
+ansi
 
 [IPC]
 gate ansible_ssh_user=ceph

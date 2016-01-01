@@ -1,0 +1,16 @@
+---
+- name: install ansible
+  sudo: yes
+  hosts: ansi 
+  tasks:
+    - apt: name=software-properties-common
+    - apt_repository: repo='ppa:ansible/ansible'
+    - apt: update_cache=yes
+    - apt: name=ansible
+
+
+- name: copy config
+  hosts: ansi
+  tasks:
+    - copy: src=~/.ansible.cfg dest=~/.ansible.cfg
+    - copy: src=~/.ssh/config dest=~/.ssh/config

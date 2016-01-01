@@ -1,1 +1,4 @@
 Defaults:{{ ansible_ssh_user }} !requiretty
+{{ ansible_ssh_user }} ALL = (root) NOPASSWD:ALL
+Defaults env_keep += "ftp_proxy http_proxy https_proxy no_proxy"
+

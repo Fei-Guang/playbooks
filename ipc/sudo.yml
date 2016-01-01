@@ -1,6 +1,6 @@
 ---
 - name: do not require tty for ssh-ing user
-  hosts: all
+  hosts: ansi
   sudo: True
   tasks:
     - name: Set a sudoers file to disable tty
