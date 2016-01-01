@@ -1,9 +1,11 @@
 ---
 - name: set dns proxy and apt conf
-  hosts: web2
+  hosts: k8s1
   sudo: True
   tasks:
     - copy: src=files/dns.base dest=/etc/resolvconf/resolv.conf.d/base
     - command: /sbin/resolvconf -u
     - copy: src=files/apt.conf dest=/etc/apt/apt.conf
     - copy: src=files/environment dest=/etc/environment
+
+- include: sudo.yml
