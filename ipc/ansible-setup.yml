@@ -1,7 +1,7 @@
 ---
 - name: install ansible
   sudo: yes
-  hosts: ansi 
+  hosts: k8s1
   tasks:
     - apt: name=software-properties-common
     - apt_repository: repo='ppa:ansible/ansible'

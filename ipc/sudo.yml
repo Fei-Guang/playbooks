@@ -1,7 +1,7 @@
 ---
 - name: do not require tty for ssh-ing user
-  hosts: ansi
-  sudo: True
+  hosts: k8s1
+  sudo: yes
   tasks:
     - name: Set a sudoers file to disable tty
       template: >

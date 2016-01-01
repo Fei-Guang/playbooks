@@ -1,6 +1,0 @@
----
-- name: install ansible
-  hosts: ansi 
-  sudo: yes
-  tasks:
-    - apt: name=software-properties-common
