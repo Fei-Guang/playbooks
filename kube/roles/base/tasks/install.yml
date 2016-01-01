@@ -1,0 +1,31 @@
+---
+# essential tasks. should run on all nodes
+- name: install apache package
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+    - apache2
+    - openssl
+    - ssl-cert
+
+- name: Load mod_proxy_fcgi module
+  sudo: yes
+  command: a2enmod proxy_fcgi
+
+- name: Load ssl module
+  sudo: yes
+  command: a2enmod ssl
+
+- name: Generate a certificate
+  file: path=/etc/apache2/ssl state=directory
+
+- command: >
+     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj \
+     "/C=US/ST=Oregon/L=Portland/O=IT/CN=gate" \
+     -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+
+- name: enable ssl
+  sudo: yes
+  command: a2ensite default-ssl.conf
+
+- name: restart apache2 service
+  service: name=apache2 state=restarted

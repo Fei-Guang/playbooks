@@ -1,0 +1,16 @@
+---
+- name: fetch conf
+  hosts: ds2
+  sudo: yes
+  tasks: 
+    - fetch: src={{ item.src}} dest={{ item.dest}} flat=yes
+      with_items:
+        - {src: '/etc/ceph/ceph.client.radosgw.keyring', dest: 'download/'}
+        #- {src: '/etc/apache2/sites-available/default-ssl.conf', dest: 'download/default-ssl.conf'}
+
+- name: copy file
+  hosts: gate
+  sudo: yes
+  tasks:
+    - file: path=/etc/ceph state=directory
+    - copy: src=download/ceph.client.radosgw.keyring dest=/etc/ceph/ceph.client.radosgw.keyring
