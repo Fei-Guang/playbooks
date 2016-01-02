@@ -1,0 +1,13 @@
+---
+# essential tasks. should run on all nodes
+- name: clone kubernetes source
+  git: repo=https://github.com/kubernetes/kubernetes.git
+       dest=/home/{{ ansible_ssh_user }}/kubernetes
+
+- name: Set cluser node parameters
+  lineinfile:
+    dest: /home/{{ ansible_ssh_user }}/kubernetes/cluster/ubuntu/config-default.sh
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^export nodes=', line: 'export nodes=${nodes:-"ubuntu@8.0.0.16 ubuntu@8.0.0.18 ubuntu@8.0.0.19"}' }

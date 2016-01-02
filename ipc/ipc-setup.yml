@@ -1,6 +1,6 @@
 ---
 - name: set dns proxy and apt conf
-  hosts: k8s1
+  hosts: k8s2
   sudo: True
   tasks:
     - copy: src=files/dns.base dest=/etc/resolvconf/resolv.conf.d/base
@@ -8,5 +8,4 @@
     - copy: src=files/apt.conf dest=/etc/apt/apt.conf
     - copy: src=files/environment dest=/etc/environment
 
-- include: sudo.yml
 - include: python-update.yml

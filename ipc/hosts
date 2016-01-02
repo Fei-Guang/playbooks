@@ -7,6 +7,7 @@ k8s
 db
 ansi
 k8s1
+k8s2
 
 [IPC]
 gate ansible_ssh_user=ceph

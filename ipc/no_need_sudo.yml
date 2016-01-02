@@ -1,6 +1,6 @@
 ---
 - name: do not require tty for ssh-ing user
-  hosts: k8s1
+  hosts: k8s2
   sudo: yes
   tasks:
     - name: Set a sudoers file to disable tty
@@ -8,4 +8,3 @@
         src=templates/disable-requiretty.j2
         dest=/etc/sudoers.d/disable-requiretty
         owner=root group=root mode=0440
-        validate="visudo -cf %s"

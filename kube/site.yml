@@ -1,3 +1,4 @@
 ---
 # site.yml : This is a sitewide playbook
-- include: gateway.yml
+- include: docker.yml
+- include: kuber.yml
