@@ -5,7 +5,7 @@ Host k8s_ipc k8s1_ipc k8s2_ipc mesos_ipc ansi_ipc
    IdentityFile ~/.ssh/key_pair_1.pem
 
 Host review.openstack.org  git.openstack.org
-	ProxyCommand socat STDIO PROXY:proxy.fei.com:%h:%p,proxyport=8080
+	ProxyCommand socat STDIO PROXY:proxy.sgp.hp.com:%h:%p,proxyport=8080
 	PreferredAuthentications publickey
 	IdentitiesOnly yes
 	User whg
@@ -22,15 +22,13 @@ Host gerrit.hpcloud.net review.hpcloud.net
 	IdentityFile ~/.ssh/id_rsa_hpcloud
 	
 Host github.com
-	ProxyCommand nc -X connect -x proxy.ifei.net:8080 %h %p
+	ProxyCommand nc -X connect -x proxy.houston.hpecorp.net:8080 %h %p
         PreferredAuthentications publickey
 	IdentitiesOnly yes
 	User Fei-Guang
 	Port 22
 	HostName github.com
 	IdentityFile ~/.ssh/git_hub_id_rsa
-        UserKnownHostsFile /dev/null
-        LogLevel ERROR
 	 
 Host gitolite
      user whg
