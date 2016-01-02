@@ -1,8 +1,12 @@
 ---
 # essential tasks. should run on all nodes
+- name: install git
+  apt: name=git state=present
+
 - name: clone kubernetes source
   git: repo=https://github.com/kubernetes/kubernetes.git
        dest=/home/{{ ansible_ssh_user }}/kubernetes
+       update=no
 
 - name: Set cluser node parameters
   lineinfile:

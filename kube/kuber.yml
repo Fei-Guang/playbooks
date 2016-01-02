@@ -2,7 +2,7 @@
 #www.yml : playbook for web servers
 - hosts: all
   remote_user: ubuntu
-  sudo: yes
+  become: yes
   pre_tasks:
      - shell: echo 'I":" Beginning to set gateway..'
   roles:
