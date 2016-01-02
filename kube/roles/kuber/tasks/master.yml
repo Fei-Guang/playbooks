@@ -1,0 +1,14 @@
+---
+# essential tasks. should run on all nodes
+- name: start ssh agent
+  command: ssh-agent -s
+  register: ssh-agent-pid
+
+- name: SSH key to the ssh-agent
+  command: ssh-add ~/.ssh/ipc-key.pem
+
+- name: installing on Bare-metal ubuntu 1
+  command: export KUBERNETES_PROVIDER=ubuntu
+  
+- name: installing on Bare-metal ubuntu 2
+  command: bash /home/ubuntu/kubernetes/cluster/kube-up.sh
