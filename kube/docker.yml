@@ -1,5 +1,5 @@
 ---
-- hosts: k8s:k8s1
+- hosts: k8s:k8s1:k8s2
   sudo: yes
   roles:
     - ~/galaxy/angstwad.docker_ubuntu
