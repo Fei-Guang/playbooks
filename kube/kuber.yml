@@ -3,9 +3,7 @@
 - hosts: all
   remote_user: ubuntu
   become: yes
-  pre_tasks:
-     - shell: echo 'I":" Beginning to set gateway..'
+  vars:
+     knodes: ubuntu@8.0.0.6 ubuntu@8.0.0.18 ubuntu@8.0.0.19
   roles:
      - kuber
-  post_tasks:
-     - shell: echo 'I":" Done'
