@@ -1,0 +1,5 @@
+---
+- name: single ssh agent
+  hosts: k8s1
+  tasks:
+    - copy: src=bashrc dest=~/.bashrc2

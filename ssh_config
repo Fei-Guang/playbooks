@@ -43,3 +43,4 @@ Host *
    UserKnownHostsFile=/dev/null
    User ubuntu
    identityfile ~/.ssh/ipc-key.pem
+   ForwardAgent yes
