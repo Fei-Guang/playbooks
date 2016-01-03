@@ -15,3 +15,8 @@
     line: "{{ item.line }}"
   with_items:
     - { regexp: '^export nodes=', line: 'export nodes=${nodes:-"{{ knodes }}"}' }
+
+- name: Set cluser provider
+  lineinfile: dest=/home/{{ ansible_ssh_user }}/.bashrc
+              line="export KUBERNETES_PROVIDER=ubuntu"
+
