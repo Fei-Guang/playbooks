@@ -1,14 +1,5 @@
 ---
 # essential tasks. should run on all nodes
-# eval "$(ssh-agent)"  or ssh-agent bash
-# ssh-add -L to list
-- name: start ssh agent
-  command: ssh-agent -s
-  register: ssh-agent-pid
-
-- name: SSH key to the ssh-agent
-  command: ssh-add ~/.ssh/ipc-key.pem
-
 - name: installing on Bare-metal ubuntu 1
   command: export KUBERNETES_PROVIDER=ubuntu
   
