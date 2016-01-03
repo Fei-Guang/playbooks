@@ -1,0 +1,7 @@
+---
+# essential tasks. should run on all nodes
+- name: installing on Bare-metal ubuntu 1
+  command: export KUBERNETES_PROVIDER=ubuntu
+  
+- name: installing on Bare-metal ubuntu 2
+  command: bash /home/ubuntu/kubernetes/cluster/kube-up.sh

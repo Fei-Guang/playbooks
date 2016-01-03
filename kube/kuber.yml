@@ -5,4 +5,4 @@
   become: yes
   roles:
      - role: kuber
-       knodes: ubuntu@8.0.0.6 ubuntu@8.0.0.18 ubuntu@8.0.0.19
+       knodes: ubuntu@8.0.0.16 ubuntu@8.0.0.18 ubuntu@8.0.0.19
