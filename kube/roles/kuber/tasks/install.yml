@@ -5,7 +5,7 @@
   with_items:
      - git
      - bashdb
-	 
+
 - name: clone kubernetes source
   git: repo=https://github.com/kubernetes/kubernetes.git
        dest=/home/{{ ansible_ssh_user }}/kubernetes
@@ -31,4 +31,4 @@
 - name: set no_proxy
   become: yes
   lineinfile: dest=/etc/environment
-              line="no_proxy="localhost,127.0.0.1,8.0.0.0/24""
+              line="no_proxy="{{ no_proxy }}""
