@@ -1,6 +1,6 @@
 ---
 #www.yml : playbook for web servers
-- hosts: all
+- hosts: k8s
   remote_user: ubuntu
   become: yes
   roles:
