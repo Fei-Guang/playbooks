@@ -1,4 +1,29 @@
 ---
+# essential tasks. should run on all nodes
+- name: Add the new gpg key
+  become: yes
+  apt_key: url=hkp://p80.pool.sks-keyservers.net:80
+           id=58118E89F3A912897C070ADBF76221572C52609D
+           state=present
+  
+- name: create docker apt source
+  become: yes
+  file: name=/etc/apt/sources.list.d/docker.list state=present
+
+- name: add docker source entry
+  become: yes
+  lineinfile: dest=/etc/apt/sources.list.d/docker.list
+              line={{ item }}
+  with_items:
+    - deb https://apt.dockerproject.org/repo ubuntu-trusty main
+
+- name: update chate
+  apt: update_cache=yes
+
+- name: remove lxc-docker  
+  become: yes
+  apt: name=lxc-docker state=absent
+
 - name: install docker
   become: yes
   apt: name={{ item }} state=present
@@ -41,7 +66,3 @@
 
 - name: Allow incoming connections on the Docker port
   command: ufw allow 2375/tcp
-  
-- name: install git
-  apt: name=git state=present
-
