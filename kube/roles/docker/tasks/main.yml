@@ -1,4 +1,3 @@
 ---
 # This is main tasks file for nginx role
 - include: install.yml
-- include: install2.yml
