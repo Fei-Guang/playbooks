@@ -2,7 +2,6 @@
 #www.yml : playbook for web servers
 - hosts: k8s
   remote_user: ubuntu
-  become: yes
   roles:
      - role: kuber
        knodes: ubuntu@8.0.0.16 ubuntu@8.0.0.18 ubuntu@8.0.0.19

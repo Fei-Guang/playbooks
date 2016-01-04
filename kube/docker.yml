@@ -5,4 +5,4 @@
   become: yes
   roles:
      - role: docker
-       http_proxy: http://proxy.hi.com:8080
+       http_proxy: http://proxy.houston.hpecorp.net:8080
