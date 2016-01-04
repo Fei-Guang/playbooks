@@ -1,8 +1,11 @@
 ---
 # essential tasks. should run on all nodes
 - name: install git
-  apt: name=git state=present
-
+  apt: name={{ item }} state=present
+  with_items:
+     - git
+     - bashdb
+	 
 - name: clone kubernetes source
   git: repo=https://github.com/kubernetes/kubernetes.git
        dest=/home/{{ ansible_ssh_user }}/kubernetes
@@ -29,7 +32,3 @@
   become: yes
   lineinfile: dest=/etc/environment
               line="no_proxy="localhost,127.0.0.1,8.0.0.0/24""
-
-- name: reconf docker proxy
-  copy: src=reconfDocker.sh 
-        dest=/home/{{ ansible_ssh_user }}/kubernetes/cluster/ubuntu/reconfDocker.sh
