@@ -1,0 +1,47 @@
+---
+- name: install docker
+  become: yes
+  apt: name={{ item }} state=present
+  with_items:
+    - docker-engine
+    - bridge-utils
+
+- name: add proxy for docker
+  lineinfile: dest=/etc/default/docker
+              line="export http_proxy="{{ http_proxy }}""
+
+- name: restart docker
+  service: name=docker state=restarted
+  
+
+- name: creating docker group
+  become: yes
+  group: name=docker state=present
+  
+- name: add user to docker group
+  become: yes
+  user: name={{ ansible_env.SUDO_USER }} group=docker state=present
+  
+#- name: Adjust memory and swap
+#  become: yes
+#  lineinfile: dest=/etc/default/grub
+#              line="GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1""
+
+#- name: update grub
+#  become: yes
+#  command: update-grub
+  
+- name: Adjust ufw
+  become: yes
+  lineinfile: dest=/etc/default/ufw
+              line="DEFAULT_FORWARD_POLICY="ACCEPT""
+
+- name: reoload firewall
+  command: ufw reload
+
+- name: Allow incoming connections on the Docker port
+  command: ufw allow 2375/tcp
+  
+- name: install git
+  apt: name=git state=present
+

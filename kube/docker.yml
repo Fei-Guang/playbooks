@@ -1,0 +1,8 @@
+---
+#www.yml : playbook for web servers
+- hosts: k8s
+  remote_user: ubuntu
+  become: yes
+  roles:
+     - role: docker
+       http_proxy: http://proxy.hi.com:8080
