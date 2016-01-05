@@ -22,28 +22,24 @@
 
 - name: Set cluser provider
   lineinfile: dest=/home/{{ ansible_ssh_user }}/.bashrc
-              line="{{ item }}"
+              line={{ item }}
   with_items:
-    # verion env failed  etcd startup
-    # - export KUBE_VERSION=1.1.2
     - export KUBERNETES_PROVIDER=ubuntu
-    # - export FLANNEL_VERSION=0.5.5
-    # - export ETCD_VERSION=2.2.0
 
 - name: set no_proxy
   lineinfile: 
-    dest=/home/{{ ansible_ssh_user }}/kubernetes/cluster/ubuntu/config-default.sh
+    dest: /home/{{ ansible_ssh_user }}/kubernetes/cluster/ubuntu/config-default.sh
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   with_items:
-    - { regexp: '^PROXY_SETTING=', line: 'PROXY_SETTING=\$\{PROXY_SETTING:-\""{{ proxy }}"\"\}' }
-  when: {{ is_proxy }}  
+    - { regexp: '^PROXY_SETTING=', line: 'PROXY_SETTING=${PROXY_SETTING:-"{{ proxy }}"}' }
+  when: "{{ is_proxy }}"
 
 - name: set proxy for download-release
-  when: {{ is_proxy }}
   lineinfile: 
-    dest=/home/{{ ansible_ssh_user }}/kubernetes/cluster/ubuntu/util.sh
+    dest: /home/{{ ansible_ssh_user }}/kubernetes/cluster/ubuntu/util.sh
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   with_items:
-    - { regexp: 'cluster/ubuntu/download-release.sh\"$', line: '  \$\{PROXY_SETTING\} "\$\{KUBE_ROOT\}/cluster/ubuntu/download-release.sh"' }
+    - { regexp: 'cluster/ubuntu/download-release.sh"$', line: '  ${PROXY_SETTING} "${KUBE_ROOT}/cluster/ubuntu/download-release.sh"' } 
+  when: "{{ is_proxy }}"
