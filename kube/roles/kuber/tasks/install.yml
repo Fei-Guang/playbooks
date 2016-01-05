@@ -23,10 +23,11 @@
   lineinfile: dest=/home/{{ ansible_ssh_user }}/.bashrc
               line="{{ item }}"
   with_items:
-    - export KUBE_VERSION=1.1.2
+    # verion env failed  etcd startup
+    # - export KUBE_VERSION=1.1.2
     - export KUBERNETES_PROVIDER=ubuntu
-    - export FLANNEL_VERSION=0.5.5
-    - export ETCD_VERSION=2.2.0
+    # - export FLANNEL_VERSION=0.5.5
+    # - export ETCD_VERSION=2.2.0
 
 - name: set no_proxy
   become: yes
