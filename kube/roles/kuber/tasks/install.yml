@@ -1,6 +1,7 @@
 ---
 # essential tasks. should run on all nodes
 - name: install git
+  become: yes
   apt: name={{ item }} state=present
   with_items:
      - git
@@ -30,6 +31,19 @@
     # - export ETCD_VERSION=2.2.0
 
 - name: set no_proxy
-  become: yes
-  lineinfile: dest=/etc/environment
-              line="no_proxy="{{ no_proxy }}""
+  lineinfile: 
+    dest=/home/{{ ansible_ssh_user }}/kubernetes/cluster/ubuntu/config-default.sh
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^PROXY_SETTING=', line: 'PROXY_SETTING=\$\{PROXY_SETTING:-\""{{ proxy }}"\"\}' }
+  when: {{ is_proxy }}  
+
+- name: set proxy for download-release
+  when: {{ is_proxy }}
+  lineinfile: 
+    dest=/home/{{ ansible_ssh_user }}/kubernetes/cluster/ubuntu/util.sh
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: 'cluster/ubuntu/download-release.sh\"$', line: '  \$\{PROXY_SETTING\} "\$\{KUBE_ROOT\}/cluster/ubuntu/download-release.sh"' }

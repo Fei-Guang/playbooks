@@ -1,0 +1,7 @@
+---
+# essential tasks. should run on all nodes
+- name: Create db user keystone
+  debug: msg="role {{ role_name  }}"
+
+
+

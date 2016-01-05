@@ -1,0 +1,15 @@
+---
+#www.yml : playbook for web servers
+- hosts: db
+  remote_user: ubuntu
+  sudo: yes
+  pre_tasks:
+     - shell: echo 'I":" Beginning to install keystone..'
+  roles:
+     - role: keystone
+       role_name: keystone
+       mysql_root_password: os123
+
+     
+  post_tasks:
+     - shell: echo 'I":" Done'
