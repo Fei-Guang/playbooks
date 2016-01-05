@@ -1,5 +1,8 @@
 #customhosts
 #inventory configs for my cluster
+ansi_ipc
+mesos_ipc
+k2_ipc
 [cluser]
 k8s
 k8s1
