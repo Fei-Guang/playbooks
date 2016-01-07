@@ -1,0 +1,8 @@
+---
+#www.yml : playbook for web servers
+- hosts: hlm003
+  remote_user: stack
+  roles:
+     - role: nova
+       name: whg
+       password: 123

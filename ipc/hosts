@@ -9,6 +9,11 @@ ansi
 k8s1
 k8s2
 
+
+hlm001
+hlm003
+
+
 [IPC]
 gate ansible_ssh_user=ceph
 kube

@@ -4,6 +4,6 @@
   remote_user: ubuntu
   roles:
      - role: kuber
-       knodes: ubuntu@8.0.0.16 ubuntu@8.0.0.18 ubuntu@8.0.0.19
+       knodes: ubuntu@8.0.0.16
        is_proxy: true 
        proxy: http_proxy=http://proxy.houston.hpecorp.net:8080 https_proxy=http://proxy.houston.hpecorp.net:8080

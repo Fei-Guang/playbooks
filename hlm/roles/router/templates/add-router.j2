@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source ~/service.osrc
+
+neutron net-create net-{{ name }}
+neutron subnet-create net-{{ name }} 8.0.0.0/24  --name net-{{ name }}-sub
+neutron router-create router1-{{ name }}
+neutron router-gateway-set router1-{{ name }} ext-net
+neutron router-interface-add router1-{{ name }} net-{{ name }}-sub
+

@@ -1,6 +1,6 @@
 ---
 - name: upload
-  hosts: k8s2
+  hosts: k8s
   tasks:
     - copy: src=download/validate-cluster.sh
             dest=~/kubernetes/cluster/

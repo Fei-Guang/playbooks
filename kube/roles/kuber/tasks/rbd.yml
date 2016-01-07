@@ -1,0 +1,8 @@
+---
+# essential tasks. should run on all nodes
+- name: install ceph-common
+  become: yes
+  apt: name={{ item }} state=present
+  with_items:
+     - ceph-common
+
