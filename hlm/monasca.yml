@@ -1,0 +1,15 @@
+---
+#www.yml : playbook for web servers
+- hosts: hlm003
+  roles:
+     - role: monasca
+       name: whg
+       password: 123
+       external_network: ext-net
+       environment:
+         - OS_USERNAME: whg 
+         - OS_PASSWORD: 123
+         - OS_USER_DOMAIN_NAME: Default
+         - OS_PROJECT_NAME: whg
+         - OS_AUTH_URL: http://10.241.103.16:35357/v3
+         - OS_CACERT: /etc/ssl/certs/ca-certificates.crt

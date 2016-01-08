@@ -5,4 +5,4 @@
      - role: nova
        name: whg
        password: 123
-	   external_network: ext-net
+       external_network: ext-net
