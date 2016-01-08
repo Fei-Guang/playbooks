@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/{{ name }}/openrc
+source ~/{{ name }}/openrc-v3
 
 nova keypair-add {{ name }}-key > ~/.ssh/{{ name }}_rsa
 secname=sec-{{ name }}
@@ -13,7 +13,7 @@ uname={{ name }}
 #get the first line NR==1 and remove space
 netid=`neutron net-list | grep net-${uname} | awk -F '|' 'NR==1{print $2}'| tr -d '[[:space:]]'`
 echo "net-id=${netid}"
-nova boot --flavor m1.tiny --image cirros-0.3.4-x86_64 --nic net-id=${netid} \
---security-group ${secID} --key-name {{ name }}-key {{ name }}-instance1
+nova boot --flavor m1.tiny --image cirros-0.3.4-x86_64-uec --nic net-id=${netid} \
+--security-group ${secID} --key-name {{ name }}-key {{ name }}-instance1-v3
 
 
