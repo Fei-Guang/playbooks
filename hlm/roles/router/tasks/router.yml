@@ -1,6 +1,6 @@
 ---
-- name: create openrc
-  template: src=openrc.j2 dest=~/{{ name }}/openrc mode=0644
+#- name: create openrc
+#  template: src=openrc.j2 dest=~/{{ name }}/openrc mode=0644
   
 - name: set user info
   template: src=add-router.j2 dest=~/{{ name }}/add-router.sh mode=0744

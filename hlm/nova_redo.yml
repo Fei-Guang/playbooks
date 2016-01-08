@@ -2,7 +2,7 @@
 #www.yml : playbook for web servers
 - hosts: hlm003
   roles:
-     - role: nova
+     - role: nova_redo
        name: whg
        password: 123
-	   external_network: ext-net
+       external_network: ext-net
