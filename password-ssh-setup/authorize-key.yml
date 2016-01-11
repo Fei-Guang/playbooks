@@ -1,0 +1,7 @@
+---
+- name: add SSH authorized key
+  hosts: hlm001
+  tasks:
+    - authorized_key:
+        user={{ansible_ssh_user}}
+        key="{{ lookup('file', '~/.ssh/rsa_key_pair_1.pub') }}"

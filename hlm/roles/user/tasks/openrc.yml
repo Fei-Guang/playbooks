@@ -1,0 +1,13 @@
+---
+- name: create openrc for new user
+  command: cp /home/stack/service.osrc /home/stack/{{ name }}/openrc
+  
+- name: subsitute user
+  lineinfile:
+    dest: /home/stack/{{ name }}/openrc
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^export OS_PROJECT_NAME', line: 'export OS_PROJECT_NAME={{ name }}' }
+    - { regexp: '^export OS_USERNAME', line: 'export OS_USERNAME={{ name }}' }
+    - { regexp: '^export OS_PASSWORD', line: 'export OS_PASSWORD={{ password }}' }

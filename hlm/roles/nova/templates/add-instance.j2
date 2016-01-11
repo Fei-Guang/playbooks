@@ -16,5 +16,5 @@ echo "net-id=${netid}"
 nova boot --flavor m1.tiny --image cirros-0.3.4-x86_64 --nic net-id=${netid} \
 --security-group ${secID} --key-name {{ name }}-key {{ name }}-instance1
 floatingIP=`neutron floatingip-create ext-net | awk -F '|' 'NR==6{print $3}'| tr -d '[[:space:]]'`
-nova floating-ip-associate demo-instance1 ${floatingIP}
+nova floating-ip-associate {{ name }}-instance1 ${floatingIP}
 

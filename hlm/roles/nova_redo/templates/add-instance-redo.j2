@@ -4,13 +4,13 @@ source ~/{{ name }}/openrc
 
 
 secname=sec-{{ name }}
-uname={{ name }}
+secID=`nova secgroup-list |grep  ${secname} | awk -F '|' 'NR==1{print $2}'| tr -d '[[:space:]]'`
 #get the first line NR==1 and remove space
 netid=`neutron net-list | grep net-${uname} | awk -F '|' 'NR==1{print $2}'| tr -d '[[:space:]]'`
 echo "net-id=${netid}"
 UUID=$(cat /proc/sys/kernel/random/uuid)
 nova boot --flavor m1.tiny --image cirros-0.3.4-x86_64 --nic net-id=${netid} \
---security-group ${secname} --key-name {{ name }}-key {{ name }}-${UUID}
+--security-group ${secID} --key-name {{ name }}-key {{ name }}-${UUID}
 floatingIP=`neutron floatingip-create ext-net | awk -F '|' 'NR==6{print $3}'| tr -d '[[:space:]]'`
 nova floating-ip-associate {{ name }}-${UUID} ${floatingIP}
 

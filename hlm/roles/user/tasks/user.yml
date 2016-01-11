@@ -7,4 +7,3 @@
 
 - name: add a admin user
   command: /home/stack/{{ name }}/add-user.sh
-

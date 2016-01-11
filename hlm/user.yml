@@ -1,6 +1,6 @@
 ---
 #www.yml : playbook for web servers
-- hosts: hlm003
+- hosts: hlm001
   roles:
      - role: user
        name: whg
