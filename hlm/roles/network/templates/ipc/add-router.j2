@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source ~/{{ name }}/openrc
+
+neutron net-create net-{{ name }}
+neutron subnet-create net-{{ name }} 8.0.0.0/24  --name net-{{ name }}-sub
+neutron router-create router1-{{ name }}
+neutron router-gateway-set router1-{{ name }} public
+neutron router-interface-add router1-{{ name }} net-{{ name }}-sub
+

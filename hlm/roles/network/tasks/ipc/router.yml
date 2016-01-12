@@ -1,0 +1,12 @@
+---
+- name: create dir for user
+  file: path=~/{{ name }}  state=directory
+
+- name: create openrc
+  template: src=ipc/openrc.j2 dest=~/{{ name }}/openrc mode=0644
+  
+- name: set user info
+  template: src=ipc/add-router.j2 dest=~/{{ name }}/add-router.sh mode=0744
+  
+- name: execute script to add network
+  command: /home/ubuntu/{{ name }}/add-router.sh

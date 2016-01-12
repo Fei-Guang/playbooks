@@ -1,5 +1,10 @@
-user: whg
+home: whg
+name: whg
 password: 123
 pub_key: 
-sub_net: 9.0.0.0/24  
+net_name: net_whg
+sub_net: 8.0.0.0/24 
+net_name_2: net_whg_2
+sub_net_2: 9.0.0.0/24
+ 
 external_network: ext-net

@@ -1,8 +1,6 @@
 ---
-#- name: create openrc
-#  template: src=openrc.j2 dest=~/{{ name }}/openrc mode=0644
 - name: upload pub key
-  copy: src=~/.ssh/rsa_key_pair_1.pub dest=~/{{ name }}/rsa_key_pair_1.pub
+  copy: src=~/.ssh/rsa_key_pair_1.pub dest=~/{{ name }}/rsa_key_pair_1.pub state=present
   
 - name: set user info
   template: src=add-instance.j2 dest=~/{{ name }}/add-instance.sh mode=0744

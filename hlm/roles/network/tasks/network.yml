@@ -1,0 +1,9 @@
+---
+#- name: create openrc
+#  template: src=openrc.j2 dest=~/{{ name }}/openrc mode=0644
+  
+- name: set user info
+  template: src=add-router.j2 dest=~/{{ name }}/add-router.sh mode=0744
+  
+- name: execute script to add network
+  command: /home/stack/{{ name }}/add-router.sh

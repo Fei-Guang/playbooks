@@ -4,4 +4,4 @@
   vars_files:
      - default.yml
   roles:
-     - role: user
+     - role: network
