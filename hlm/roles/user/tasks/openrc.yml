@@ -1,4 +1,7 @@
 ---
+- name: create user user dir
+  file: path=/home/stack/{{ name }} state=directory
+
 - name: create openrc for new user
   command: cp /home/stack/service.osrc /home/stack/{{ name }}/openrc
   

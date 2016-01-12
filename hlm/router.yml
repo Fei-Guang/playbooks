@@ -1,8 +1,8 @@
 ---
 #www.yml : playbook for web servers
-- hosts: hlm001
+- hosts: hlm003
   roles:
      - role: router
-       name: whg
+       name: whg2
        password: 123
        external_network: ext-net
