@@ -6,8 +6,8 @@ source ~/{{ home }}/openrc
 secname=sec-{{ name }}
 secID=`nova secgroup-list |grep  ${secname} | awk -F '|' 'NR==1{print $2}'| tr -d '[[:space:]]'`
 #get the first line NR==1 and remove space
-uname={{ net_name_2 }}
-netid=`neutron net-list | grep net-${uname} | awk -F '|' 'NR==1{print $2}'| tr -d '[[:space:]]'`
+uname=net-{{ net_name }}
+netid=`neutron net-list | grep ${uname} | awk -F '|' 'NR==1{print $2}'| tr -d '[[:space:]]'`
 echo "net-id=${netid}"
 UUID=$(cat /proc/sys/kernel/random/uuid)
 nova boot --flavor m1.tiny --image cirros-0.3.4-x86_64 --nic net-id=${netid} \
