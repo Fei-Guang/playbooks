@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source ~/{{ name }}/openrc
+source ~/{{ home }}/openrc
 
-nova keypair-add --pub-key rsa_key_pair_1.pub {{ name }}-key 
+nova keypair-add --pub-key ~/{{ home }}/{{ pub_key }} {{ name }}-key 
 secname=sec-{{ name }}
 nova secgroup-delete ${secname}
 secID=`nova secgroup-create ${secname} ${secname}| awk -F '|' 'NR==4{print $2}'| tr -d '[[:space:]]'`
@@ -13,8 +13,9 @@ uname={{ name }}
 #get the first line NR==1 and remove space
 netid=`neutron net-list | grep net-${uname} | awk -F '|' 'NR==1{print $2}'| tr -d '[[:space:]]'`
 echo "net-id=${netid}"
+UUID=$(cat /proc/sys/kernel/random/uuid)
 nova boot --flavor m1.tiny --image cirros-0.3.4-x86_64 --nic net-id=${netid} \
---security-group ${secID} --key-name {{ name }}-key {{ name }}-instance1
+--security-group ${secID} --key-name {{ name }}-key nova-${UUID}
 floatingIP=`neutron floatingip-create ext-net | awk -F '|' 'NR==6{print $3}'| tr -d '[[:space:]]'`
-nova floating-ip-associate {{ name }}-instance1 ${floatingIP}
+nova floating-ip-associate nova-${UUID} ${floatingIP}
 

@@ -1,9 +1,10 @@
 ---
 - name: upload pub key
-  copy: src=~/.ssh/rsa_key_pair_1.pub dest=~/{{ name }}/rsa_key_pair_1.pub state=present
+  copy: src=~/.ssh/{{ pub_key }} dest=~/{{ home }}/{{ pub_key }}
+        validate='ls -l %s'
   
 - name: set user info
-  template: src=add-instance.j2 dest=~/{{ name }}/add-instance.sh mode=0744
+  template: src=add-instance.j2 dest=~/{{ home }}/add-instance.sh mode=0744
   
 - name: execute script to add network
-  command: /home/stack/{{ name }}/add-instance.sh
+  command: /home/stack/{{ home }}/add-instance.sh

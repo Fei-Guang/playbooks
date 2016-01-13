@@ -1,16 +1,16 @@
 ---
 - name: create user user dir
-  file: path=/home/stack/{{ name }} state=directory
+  file: path=/home/stack/{{ home }} state=directory
 
 - name: create openrc for new user
-  command: cp /home/stack/service.osrc /home/stack/{{ name }}/openrc
+  command: cp /home/stack/service.osrc /home/stack/{{ home }}/openrc
   
 - name: create keystone.rc for new user
-  command: cp /home/stack/keystone.osrc /home/stack/{{ name }}/keystone.rc
+  command: cp /home/stack/keystone.osrc /home/stack/{{ home }}/keystone.rc
   
 - name: subsitute user for openrc 
   lineinfile:
-    dest: /home/stack/{{ name }}/openrc
+    dest: /home/stack/{{ home }}/openrc
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   with_items:
@@ -20,7 +20,7 @@
 
 - name: subsitute user for keystone 
   lineinfile:
-    dest: /home/stack/{{ name }}/keystone.rc
+    dest: /home/stack/{{ home }}/keystone.rc
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   with_items:
