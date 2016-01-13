@@ -1,6 +1,6 @@
 ---
 #www.yml : playbook for web servers
-- hosts: hlm101
+- hosts: hlm001
   vars_files:
      - default.yml
   roles:

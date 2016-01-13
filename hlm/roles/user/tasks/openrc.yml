@@ -5,7 +5,10 @@
 - name: create openrc for new user
   command: cp /home/stack/service.osrc /home/stack/{{ name }}/openrc
   
-- name: subsitute user
+- name: create keystone.rc for new user
+  command: cp /home/stack/keystone.osrc /home/stack/{{ name }}/keystone.rc
+  
+- name: subsitute user for openrc 
   lineinfile:
     dest: /home/stack/{{ name }}/openrc
     regexp: "{{ item.regexp }}"
@@ -13,4 +16,13 @@
   with_items:
     - { regexp: '^export OS_PROJECT_NAME', line: 'export OS_PROJECT_NAME={{ name }}' }
     - { regexp: '^export OS_USERNAME', line: 'export OS_USERNAME={{ name }}' }
+    - { regexp: '^export OS_PASSWORD', line: 'export OS_PASSWORD={{ password }}' }
+
+- name: subsitute user for keystone 
+  lineinfile:
+    dest: /home/stack/{{ name }}/keystone.rc
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^export OS_USERNAME', line: 'export OS_USERNAME={{ admin_name }}' }    
     - { regexp: '^export OS_PASSWORD', line: 'export OS_PASSWORD={{ password }}' }

@@ -4,4 +4,6 @@ source ~/keystone.osrc
 
 openstack project create {{ name }}
 openstack user create --project {{ name }} --password {{ password }} {{ name }}
+openstack user create --project {{ name }} --password {{ password }} {{ admin_name }}
 openstack role add --project {{ name }} --user {{ name }} member
+openstack role add --project {{ name }} --user {{ admin_name }} admin
