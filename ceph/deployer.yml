@@ -1,8 +1,8 @@
 ---
 #www.yml : playbook for web servers
 - hosts: all
-  pre_tasks:
-     - shell: echo 'I":" Beginning to set gateway..'
+  vars_files:
+     - default.yml
   roles:
      - deployer
   post_tasks:

@@ -7,6 +7,12 @@
 - name: mkdir /etc/ceph
   become: yes
   file: path=/etc/ceph state=directory
+ 
+- name: create deployer script
+  template: src=deployer.j2 dest=~/deployer.sh mode=0744
+
+  
+
   
 
 

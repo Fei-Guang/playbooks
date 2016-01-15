@@ -1,0 +1,6 @@
+initial_monitor_hostname: mon
+ceph_nodes: mon ceph1
+node1: mon
+node2: ceph1
+node1_disk: /dev/vdb
+node2_disk: /dev/vdb

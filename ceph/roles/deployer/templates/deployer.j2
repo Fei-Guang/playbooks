@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#Monitor initial member
+ceph-deploy new {{ initial_monitor_hostname }}
+ceph-deploy install {{ node1 }} {{ node2 }}
+ceph-deploy mon create-initial
+ceph-deploy disk zap {{ node1 }}:{{ node1_disk }} {{ node2 }}:{{ node2_disk }}
+ceph-deploy osd create {{ node1 }}:{{ node1_disk }} {{ node2 }}:{{ node2_disk }}
