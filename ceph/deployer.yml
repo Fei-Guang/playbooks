@@ -1,0 +1,9 @@
+---
+#www.yml : playbook for web servers
+- hosts: all
+  pre_tasks:
+     - shell: echo 'I":" Beginning to set gateway..'
+  roles:
+     - deployer
+  post_tasks:
+     - shell: echo 'I":" Done'

@@ -1,0 +1,13 @@
+---
+# essential tasks. should run on all nodes
+- name: install deployer
+  become: yes
+  pip: name=ceph-deploy
+  
+- name: mkdir /etc/ceph
+  become: yes
+  file: path=/etc/ceph state=directory
+  
+
+
+
