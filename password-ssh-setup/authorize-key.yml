@@ -1,6 +1,6 @@
 ---
 - name: add SSH authorized key
-  hosts: hlm101
+  hosts: all
   tasks:
     - authorized_key:
         user={{ansible_ssh_user}}

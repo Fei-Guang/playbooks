@@ -1,0 +1,38 @@
+#!/bin/bash
+
+source ~/service.osrc
+
+monasca metric-list --dimensions service=compute | awk -F '|' '{print $2}'| sort |uniq
+
+monasca alarm-list --metric-dimensions service=compute | awk -F '|' '{print $4 $5}'| sort |uniq
+
+#list all metric name
+
+$monasca metric-list | awk -F '|' '{print $2}'
+
+#list demesion for a metric
+#There is no API to delete a metric because the backend database is Vertica 
+#which allows an incredible amount of write/second as long as you don't delete or modify
+$monasca metric-list --name <metric-name>
+
+$monasca metric-list --name vm.host_alive_status
+
+$monasca metric-list --dimensions service=compute | awk -F '|' '{print $2}'| sort |uniq
+
+#list all alarm definition
+
+$monasca alarm-definition-list | awk -F '|' '{print $2 $4}'
+
+$ monasca alarm-definition-list --name <alarm-name>
+
+$monasca alarm-definition-show 
+
+$monasca alarm-list --metric-dimensions service=compute
+
+$monasca alarm-definition-list --dimensions service=compute
+
+$monasca alarm-list --metric-dimensions service=compute | awk -F '|' '{print $4 $5}'| sort |uniq
+
+#list the second field is not start with 4 spaces
+$awk -F '|'  '$2 !~ /^     +/ {print $2}'  compute.metric.txt | sort| uniq 
+

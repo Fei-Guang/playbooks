@@ -1,12 +1,12 @@
 home: whg
 name: whg
 admin_name: adm_whg
-user_name: whg3
+user_name: whg
 password: 123
 pub_key: rsa_key_pair_1.pub 
 router: router_whg_21
-net_name: net_whg_31
+net_name: net_whg_8
 sub_net: 8.0.0.0/24 
-net_name_2: net_whg_211
+net_name_2: net_whg_19
 sub_net_2: 19.0.0.0/24
 external_network: ext-net

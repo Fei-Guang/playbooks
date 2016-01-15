@@ -1,15 +1,8 @@
 ---
-- name: source in bash
-  become: yes
-  lineinfile: dest=/home/{{ ansible_user }}/.bashrc 
-              line="source /home/{{ ansible_user }}/{{ name }}/openrc"
-
 #- name: install python-monascaclient
 #  pip: name=python-monascaclient state=present
+  
+  
+- name: Create script
+  template: src=monasca-util.j2 dest=~/{{ home }}/monasca-util.sh mode=0744
 
-- name: list alarm definition
-  shell: /usr/bin/monasca alarm-definition-list
-  register: mon_result
-
-- name: show result
-  debug: mon_result={{ token.stdout }}

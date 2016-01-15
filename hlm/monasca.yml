@@ -1,6 +1,8 @@
 ---
 #www.yml : playbook for web servers
-- hosts: hlm003
+- hosts: all
+  vars_files:
+     - default.yml
   roles:
      - role: monasca
        name: whg
