@@ -1,0 +1,21 @@
+---
+- name: download ez
+  hosts: all
+  tasks:
+    - get_url: url=https://bootstrap.pypa.io/ez_setup.py dest=~/ez_setup.py
+
+- name: install  ez
+  hosts: all
+  tasks:
+    - command: sudo -E python ~/ez_setup.py
+    
+- name: download pip
+  hosts: all
+  tasks:
+    - get_url: url=https://bootstrap.pypa.io/get-pip.py dest=~/get-pip.py
+
+
+- name: install pip
+  hosts: all
+  tasks:
+    - command: sudo -E python ~/get-pip.py
