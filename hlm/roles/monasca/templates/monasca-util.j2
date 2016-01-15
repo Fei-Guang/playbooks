@@ -36,3 +36,7 @@ $monasca alarm-list --metric-dimensions service=compute | awk -F '|' '{print $4 
 #list the second field is not start with 4 spaces
 $awk -F '|'  '$2 !~ /^     +/ {print $2}'  compute.metric.txt | sort| uniq 
 
+$monasca alarm-list --metric-dimensions service=compute | awk -F '|' '{print $4 $5}' |sort | uniq
+
+$monasca metric-list --name cpu.utilization_perc --dimensions service=compute
+
