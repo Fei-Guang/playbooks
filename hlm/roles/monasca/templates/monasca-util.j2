@@ -40,3 +40,5 @@ $monasca alarm-list --metric-dimensions service=compute | awk -F '|' '{print $4 
 
 $monasca metric-list --name cpu.utilization_perc --dimensions service=compute
 
+$monasca measurement-list --dimensions resource_id={{resource_id}} vm.host_alive_status 2016-01-19 | more
+
