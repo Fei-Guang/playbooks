@@ -7,6 +7,14 @@
 - name: mkdir /etc/ceph
   become: yes
   file: path=/etc/ceph state=directory
+  
+- name: hosts entry
+  become: yes
+  lineinfile: dest=/etc/hosts
+              line={{ item }}
+  with_items:
+    - "{{ node1_ip}} {{ node1 }}"
+    - "{{ node2_ip}} {{ node2 }}"
  
 - name: create deployer script
   template: src=deployer.j2 dest=~/deployer.sh mode=0744

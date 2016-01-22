@@ -6,6 +6,7 @@ function start_agent {
      echo succeeded
      chmod 600 ${SSH_ENV}
      . ${SSH_ENV} > /dev/null
+	 /usr/bin/ssh-add .ssh/key_pair_1.pem
      /usr/bin/ssh-add;
 }
 
