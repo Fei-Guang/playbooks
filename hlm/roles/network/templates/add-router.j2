@@ -2,7 +2,7 @@
 
 source ~/{{ home }}/openrc
 
-neutron net-create net-{{ net_name_2 }}
-neutron subnet-create net-{{ net_name_2 }} {{ sub_net_2 }}  --name net-{{ net_name_2 }}-sub
-neutron router-interface-add router1-{{ name }} net-{{ net_name_2 }}-sub
+neutron net-create {{ net_name_2 }}
+neutron subnet-create {{ net_name_2 }} {{ sub_net_2 }}  --name {{ net_name_2 }}-sub
+neutron router-interface-add {{ router }} {{ net_name_2 }}-sub
 

@@ -9,9 +9,9 @@ secID=`nova secgroup-create ${secname} ${secname}| awk -F '|' 'NR==4{print $2}'|
 echo "secID=${secID}"
 nova secgroup-add-rule sec-{{ name }} icmp -1 -1 0.0.0.0/0
 nova secgroup-add-rule sec-{{ name }} tcp 22 22 0.0.0.0/0
-uname={{ name }}
+uname={{ net_name }}
 #get the first line NR==1 and remove space
-netid=`neutron net-list | grep net-${uname} | awk -F '|' 'NR==1{print $2}'| tr -d '[[:space:]]'`
+netid=`neutron net-list | grep ${uname} | awk -F '|' 'NR==1{print $2}'| tr -d '[[:space:]]'`
 echo "net-id=${netid}"
 UUID=$(cat /proc/sys/kernel/random/uuid)
 nova boot --flavor m1.tiny --image cirros-0.3.4-x86_64 --nic net-id=${netid} \

@@ -6,3 +6,5 @@ ceph-deploy install {{ node1 }} {{ node2 }}
 ceph-deploy mon create-initial
 ceph-deploy disk zap {{ node1 }}:{{ node1_disk }} {{ node2 }}:{{ node2_disk }}
 ceph-deploy osd create {{ node1 }}:{{ node1_disk }} {{ node2 }}:{{ node2_disk }}
+rbd create ceph-client1-rbd1 --size 10240
+rbd ls -l

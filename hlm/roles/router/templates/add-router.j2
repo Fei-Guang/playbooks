@@ -3,7 +3,7 @@
 source ~/{{ home }}/openrc
 
 neutron net-create {{ net_name }}
-neutron subnet-create {{ net_name }} {{ sub_net_2 }}  --name {{ net_name }}-sub
+neutron subnet-create {{ net_name }} {{ sub_net }}  --name {{ net_name }}-sub
 neutron router-create {{ router }}
 neutron router-gateway-set {{ router }} ext-net
 neutron router-interface-add {{ router }} {{ net_name }}-sub
