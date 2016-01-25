@@ -2,5 +2,6 @@
 # site.yml : This is a sitewide playbook
 - include: user.yml
 - include: router.yml
+- include: network.yml
 - include: nova.yml
 - include: monasca.yml

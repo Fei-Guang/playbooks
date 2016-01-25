@@ -11,3 +11,4 @@ net_name_2: net_whg_29
 sub_net_2: 29.0.0.0/24
 external_network: ext-net
 security_group: sec-whg
+resource_id: nova_instance_id
