@@ -1,0 +1,7 @@
+---
+#www.yml : playbook for web servers
+- hosts: all
+  vars_files:
+     - default.yml
+  roles:
+     - role: user

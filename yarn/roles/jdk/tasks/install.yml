@@ -1,0 +1,4 @@
+---
+- name: install openjdk 7
+  become: yes
+  apt: name=openjdk-7-jdk state=latest install_recommends=no update_cache=yes
