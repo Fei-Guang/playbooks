@@ -1,8 +1,9 @@
-hlm[001:999]
+#hlm[001:999]
 #hlm001
 #hlm101
 #hlm002
-k8s_ipc ansible_user=ubuntu
+#k8s_ipc ansible_user=ubuntu
+ceph1 ansible_user=ubuntu
 
-ds
-ds_hp
+#ds
+#ds_hp

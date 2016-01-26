@@ -1,2 +1,3 @@
-yarn_home: ~/hadoop-2.7.1
+yarn_home: /opt/hadoop-2.7.2
+version: 2.7.2
 

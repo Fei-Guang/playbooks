@@ -1,5 +1,14 @@
 ---
+- name: set hadoop prefix
+  become: yes
+  lineinfile: dest=/home/hdfs/.bashrc
+              line={{ item }}
+  with_items:
+    - export HADOOP_PREFIX={{ yarn_home }}
+    - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+
 - name: create config
+  become: yes
   template: src={{ item.src }} dest={{ yarn_home }}/etc/hadoop/{{ item.dest}} mode=0644
   with_items:
     - { src: 'core-site.xml.j2', dest: 'core-site.xml' }
@@ -8,6 +17,7 @@
     - { src: 'yarn-site.xml.j2', dest: 'yarn-site.xml' }
 
 - name: Set hadoop node parameters
+  become: yes
   lineinfile:
     dest: "{{ yarn_home }}/etc/hadoop/hadoop-env.sh"
     regexp: "{{ item.regexp }}"
@@ -17,6 +27,7 @@
     - { regexp: '^#export HADOOP_NAMENODE_INIT_HEAPSIZE', line: 'export HADOOP_NAMENODE_INIT_HEAPSIZE="1000"' }
 
 - name: Set mapred node parameters
+  become: yes
   lineinfile:
     dest: "{{ yarn_home }}/etc/hadoop/mapred-env.sh"
     regexp: "{{ item.regexp }}"

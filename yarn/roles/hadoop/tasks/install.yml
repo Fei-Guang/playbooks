@@ -37,9 +37,19 @@
   become: yes
   file: path=/var/log/hadoop/yarn  owner=yarn group=hadoop state=directory
   
-- name: create install log
-  file: path={{ yarn_home }}/logs  state=directory mode="u=rw,g=rw,o=r"
-  
 - name: set hostname
   become: yes
   lineinfile:  dest=/etc/hosts line="{{ ansible_eth0.ipv4.address }} {{ ansible_hostname }}"  
+
+- name: download hadoop
+  become: yes
+  get_url: url=http://apache.osuosl.org/hadoop/common/stable/hadoop-2.7.2.tar.gz dest=/opt/hadoop-2.7.2.tar.gz mode=0776
+  
+- name: untar hadoop
+  become: yes
+  command: tar zxf /opt/hadoop-2.7.2.tar.gz -C /opt
+  # unarchive: src=/opt/hadoop-2.7.2.tar.gz dest=/opt    
+
+- name: create install log
+  become: yes
+  file: path={{ yarn_home }}/logs  owner=yarn group=hadoop state=directory mode="u=rw,g=rw,o=r"

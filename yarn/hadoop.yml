@@ -1,6 +1,6 @@
 ---
 #www.yml : playbook for web servers
-- hosts: k8s_ipc
+- hosts: all
   vars_files:
      - default.yml
   roles:
