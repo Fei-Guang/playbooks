@@ -1,0 +1,10 @@
+hlm[001:999]
+#hlm001
+#hlm101
+#hlm002
+k8s_ipc ansible_user=ubuntu
+localhost ansible_user=wuhg
+
+
+ds
+ds_hp

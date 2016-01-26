@@ -1,0 +1,15 @@
+---
+- name: install git
+  become: yes
+  apt: name={{ item }} state=present
+  with_items:
+     - git
+     #- bashdb
+
+- name: config git
+  template: src=config.sh.j2 dest=~/git_config.sh mode=0744
+  
+- name: add a admin user
+  command: ~/git_config.sh
+
+
