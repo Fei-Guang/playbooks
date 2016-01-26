@@ -1,0 +1,25 @@
+---
+- name: create config
+  template: src={{ item.src }} dest={{ yarn_home }}/etc/hadoop/{{ item.dest}} mode=0644
+  with_items:
+    - { src: 'core-site.xml.j2', dest: 'core-site.xml' }
+    - { src: 'hdfs-site.xml.j2', dest: 'hdfs-site.xml' }
+    - { src: 'mapred-site.xml.j2', dest: 'mapred-site.xml' }
+    - { src: 'yarn-site.xml.j2', dest: 'yarn-site.xml' }
+
+- name: Set hadoop node parameters
+  lineinfile:
+    dest: "{{ yarn_home }}/etc/hadoop/hadoop-env.sh"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^#export HADOOP_HEAPSIZE', line: 'export HADOOP_HEAPSIZE="1000"' }
+    - { regexp: '^#export HADOOP_NAMENODE_INIT_HEAPSIZE', line: 'export HADOOP_NAMENODE_INIT_HEAPSIZE="1000"' }
+
+- name: Set mapred node parameters
+  lineinfile:
+    dest: "{{ yarn_home }}/etc/hadoop/mapred-env.sh"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^export HADOOP_JOB_HISTORYSERVER_HEAPSIZE', line: 'export HADOOP_JOB_HISTORYSERVER_HEAPSIZE=1000' }

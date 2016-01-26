@@ -36,3 +36,6 @@
 - name: create log yarn directory
   become: yes
   file: path=/var/log/hadoop/yarn  owner=yarn group=hadoop state=directory
+  
+- name: create install log
+  file: path={{ yarn_home }}/logs  state=directory mode="u=rw,g=rw,o=r"
