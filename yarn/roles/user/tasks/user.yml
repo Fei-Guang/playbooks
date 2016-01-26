@@ -1,9 +1,0 @@
----
-- name: create dir for user
-  file: path=~/{{ name }}  state=directory
-
-- name: set user info
-  template: src=add-user.j2 dest=~/{{ name }}/add-user.sh mode=0744
-
-- name: add a admin user
-  command: /home/stack/{{ name }}/add-user.sh

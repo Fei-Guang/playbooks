@@ -2,7 +2,7 @@ hlm[001:999]
 #hlm001
 #hlm101
 #hlm002
-hlm003  ansible_user=stack
+k8s_ipc ansible_user=ubuntu
 
 ds
 ds_hp

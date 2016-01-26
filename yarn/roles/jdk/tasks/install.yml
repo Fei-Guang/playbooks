@@ -2,3 +2,9 @@
 - name: install openjdk 7
   become: yes
   apt: name=openjdk-7-jdk state=latest install_recommends=no update_cache=yes
+  
+- name: set java home
+  lineinfile: dest=/home/{{ ansible_user }}/.bashrc
+              line={{ item }}
+  with_items:
+    - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
