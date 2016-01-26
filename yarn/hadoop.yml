@@ -1,0 +1,7 @@
+---
+#www.yml : playbook for web servers
+- hosts: k8s_ipc
+  vars_files:
+     - default.yml
+  roles:
+     - role: hadoop
