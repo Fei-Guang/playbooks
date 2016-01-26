@@ -39,3 +39,7 @@
   
 - name: create install log
   file: path={{ yarn_home }}/logs  state=directory mode="u=rw,g=rw,o=r"
+  
+- name: set hostname
+  become: yes
+  lineinfile:  dest=/etc/hosts line="{{ ansible_eth0.ipv4.address }} {{ ansible_hostname }}"  
