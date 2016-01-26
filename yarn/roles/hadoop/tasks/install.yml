@@ -7,11 +7,32 @@
   become: yes
   user: name=yarn group=hadoop
   
-- name: create user yarn
+- name: create user hdfs
   become: yes
   user: name=hdfs group=hadoop
 
 - name: create user mapred
   become: yes
-  user: name=mapred group=hadoop
+  user: name=mapred group=hadoop  
+  
+- name: create hdfs directory
+  become: yes
+  file: path=/var/data/hadoop/hdfs  owner=hdfs group=hadoop state=directory
 
+- name: create hdfs nn directory
+  become: yes
+  file: path=/var/data/hadoop/hdfs/nn  owner=hdfs group=hadoop state=directory
+
+
+- name: create hdfs  snn directory
+  become: yes
+  file: path=/var/data/hadoop/hdfs/snn  owner=hdfs group=hadoop state=directory
+
+
+- name: create hdfs dn directory
+  become: yes
+  file: path=/var/data/hadoop/hdfs/dn  owner=hdfs group=hadoop state=directory 
+  
+- name: create log yarn directory
+  become: yes
+  file: path=/var/log/hadoop/yarn  owner=yarn group=hadoop state=directory
