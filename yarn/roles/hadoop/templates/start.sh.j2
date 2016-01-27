@@ -1,0 +1,26 @@
+#!/bin/bash
+
+su - hdfs
+YARM_HOME={{ yarn_home }}
+cd $YARM_HOME
+#start in Pseudo-Distributed mode
+bin/hdfs namenode -format
+sbin/hadoop-daemon.sh start namenode
+sbin/hadoop-daemon.sh start secondarynamenode
+sbin/hadoop-daemon.sh start datanode
+jps
+curl http://localhost:50070
+
+su - yarn
+cd $YARM_HOME
+sbin/yarn-daemon.sh start resourcemanager
+sbin/yarn-daemon.sh start nodemanager
+
+jps
+curl http://localhost:8088
+
+
+su - hdfs
+$ cd /opt/yarn/hadoop-2.2.0/bin
+$ export YARN_EXAMPLES=/opt/yarn/hadoop-2.2.0/share/hadoop/mapreduce
+$ ./yarn jar $YARN_EXAMPLES/hadoop-mapreduce-examples-2.2.0.jar pi 16 1000

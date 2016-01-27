@@ -1,7 +1,15 @@
 ---
-- name: set hadoop prefix
+- name: set hadoop prefix for user hdfs
   become: yes
   lineinfile: dest=/home/hdfs/.bashrc
+              line={{ item }}
+  with_items:
+    - export HADOOP_PREFIX={{ yarn_home }}
+    - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+
+- name: set hadoop prefix for user yarn
+  become: yes
+  lineinfile: dest=/home/yarn/.bashrc
               line={{ item }}
   with_items:
     - export HADOOP_PREFIX={{ yarn_home }}
@@ -34,3 +42,7 @@
     line: "{{ item.line }}"
   with_items:
     - { regexp: '^export HADOOP_JOB_HISTORYSERVER_HEAPSIZE', line: 'export HADOOP_JOB_HISTORYSERVER_HEAPSIZE=1000' }
+	
+- name: create yarn start script
+  template: src=start.sh.j2 dest=~/start_yarn.sh mode=0644
+	

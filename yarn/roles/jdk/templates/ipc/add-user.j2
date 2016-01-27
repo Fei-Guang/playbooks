@@ -1,7 +1,0 @@
-#!/bin/bash
-
-source ~/devstack/openrc
-
-openstack project create {{ name }}
-openstack user create --project {{ name }} --password {{ password }} {{ name }}
-openstack role add --project {{ name }} --user {{ name }} admin
