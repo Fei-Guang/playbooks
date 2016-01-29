@@ -1,5 +1,6 @@
-hlm[001:999]
+#hlm[001:999]
 #hlm101
+hlm606a
 #hlm201
 #hlm002
 #hlm202
@@ -7,4 +8,4 @@ hlm[001:999]
 #hlm203
 #hlm004
 #hlm204
-qa-hlm  ansible_user=amogh
+#qa-hlm  ansible_user=amogh

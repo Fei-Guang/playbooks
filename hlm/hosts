@@ -1,8 +1,9 @@
-hlm[001:999]
+#hlm[001:999]
 #hlm001
 #hlm101
+hlm606a  ansible_user=stack
 #hlm002
-hlm003  ansible_user=stack
+#hlm003  ansible_user=stack
 
-ds
-ds_hp
+#ds
+#ds_hp

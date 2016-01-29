@@ -1,10 +1,15 @@
 ---
-- name: upload pub key
+- name: upload pub key for nova instance access
   copy: src=~/.ssh/{{ pub_key }} dest=~/{{ home }}/{{ pub_key }}
         validate='ls -l %s'
   
 - name: set user info
   template: src=add-instance.j2 dest=~/{{ home }}/add-instance.sh mode=0744
+  
+- name: display service url
+  vars:
+     contents: "{{ lookup('file', '~/service.osrc') }}
+  debug: msg="service.osrc:\n{{ contents }}"
   
 - name: execute script to add nova instance
   command: /home/stack/{{ home }}/add-instance.sh

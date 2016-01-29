@@ -11,4 +11,7 @@ net_name_2: net_whg1_29
 sub_net_2: 29.0.0.0/24
 external_network: ext-net
 security_group: sec-whg
+image_name: cirros-0.3.4-x86_64
+image_name_2: cirros-0.3.3-x86_64
+flavor: m1.small
 resource_id: nova_instance_id
