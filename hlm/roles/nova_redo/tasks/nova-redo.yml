@@ -11,7 +11,7 @@
   register: service
 
 - name: display 
-  debug: msg={{ service.stdout_lines }}
+  debug: service.osrc={{ service.stdout_lines }}
   
 - name: execute script to add network
   command: /home/stack/{{ name }}/add-instance-redo.sh
