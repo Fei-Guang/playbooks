@@ -1,7 +1,7 @@
 ---
 - name: install ansible
   sudo: yes
-  hosts: k8s1
+  hosts: all 
   tasks:
     #- apt: name=software-properties-common
     #- apt_repository: repo='ppa:ansible/ansible'
@@ -9,7 +9,7 @@
     #- apt: name=ansible
 
 - name: install ansible from source
-  hosts: k8s1
+  hosts: all
   tasks:
     - git: repo=https://github.com/ansible/ansible.git
            dest=/home/{{ ansible_ssh_user }}/ansible
@@ -19,8 +19,9 @@
 
 
 - name: copy config
-  hosts: ansi
+  hosts: all
   tasks:
+    - command: python setup.py install
     - copy: src=~/.ansible.cfg dest=~/.ansible.cfg
     - copy: src=~/.ssh/config dest=~/.ssh/config
     - copy: src=~/.ssh/git_hub_id_rsa dest=~/.ssh/git_hub_id_rsa
