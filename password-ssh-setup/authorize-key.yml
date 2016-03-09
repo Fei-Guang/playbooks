@@ -1,4 +1,11 @@
 ---
+- name: install sshpass on ansible host
+  hosts: localhost
+  tasks: 
+    - apt: name={{ item }} state=present
+      with_items:
+        - sshpass
+
 - name: add SSH authorized key
   hosts: all
   tasks:
