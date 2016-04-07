@@ -1,19 +1,25 @@
 ---
-- name: creating ceph group
-  hosts: k8s
+- name: creating {{ group }} group
+  hosts: all
   sudo: yes
+  vars_files:
+     - default.yml
   tasks:
-    - group: name=ceph state=present
+    - group: name={{ group }} state=present
 
-- name: creating ceph user
-  hosts: k8s
+- name: creating {{ user }} user
+  hosts: all
   sudo: yes
+  vars_files:
+     - default.yml
   tasks:
-    - user: name=ceph group=ceph state=present
-    - file: path=/home/ceph/.ssh/ssl state=directory
+    - user: name={{ user }} group={{ user }} state=present
+    - file: path=/home/{{ user }}/.ssh/ssl state=directory
 
 - name: add ipc key to ceph
-  hosts: k8s
+  hosts: all
   sudo: True
+  vars_files:
+     - default.yml
   tasks:
-    - command: cp ~/.ssh/authorized_keys /home/ceph/.ssh/authorized_keys
+    - command: cp ~/.ssh/authorized_keys /home/{{ user }}/.ssh/authorized_keys

@@ -1,7 +1,7 @@
 ---
 - name: update python to 2.7.11
   sudo: yes
-  hosts: k8s1
+  hosts: all
   tasks:
     #- command: apt-add-repository ppa:fkrull/deadsnakes-python2.7
     - apt_repository: repo='ppa:fkrull/deadsnakes-python2.7'
@@ -10,7 +10,7 @@
 
 - name: default python 3.4
   sudo: yes
-  hosts: k8s1
+  hosts: all
   tasks:
     - lineinfile: dest=/home/{{ ansible_env.SUDO_USER }}/.bashrc 
                   line="alias python='/usr/bin/python3'"
