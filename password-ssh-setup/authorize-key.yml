@@ -8,6 +8,7 @@
 
 - name: add SSH authorized key
   hosts: all
+  sudo: yes
   tasks:
     - authorized_key:
         user={{ansible_ssh_user}}
