@@ -4,6 +4,7 @@ user: ano223
 #what this looks like in a playbook. See 
 #http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
 #for details on various ways to generate these password values
+#mkpasswd --method=SHA-512 {{ passwd}}
 passwd: $6$QESoMbGmWq0U3T9w$HPuL4tJ5BU/80Yfw1jcyzLBc2/cMsklezLpHsxOUgADD3sUnqd9pb3wmUC4TddIVjzxco8sXNzDh3todPjEA/1
 remote_user: root
 group: "{{ user }}"
