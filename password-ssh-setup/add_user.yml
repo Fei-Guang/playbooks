@@ -15,5 +15,5 @@
   remote_user: "{{ remote_user }}"
   sudo: yes
   tasks:
-    - user: name={{ user }} group={{ group }} password={{ passwd }} shell=/bin/bash state=present
+    - user: name={{ user }} group={{ group }} groups="sudo,{{ group}}" password={{ passwd }} shell=/bin/bash state=present
     - file: path=/home/{{ user }}/.ssh/ssl state=directory
