@@ -17,7 +17,7 @@
   with_items:
     - deb https://apt.dockerproject.org/repo ubuntu-trusty main
 
-- name: update chate
+- name: update cache
   apt: update_cache=yes
 
 - name: remove lxc-docker  
@@ -32,9 +32,10 @@
     - docker-engine
     - bridge-utils
 
-- name: add proxy for docker
-  lineinfile: dest=/etc/default/docker
-              line="export http_proxy="{{ http_proxy }}""
+#- name: add proxy for docker
+#  lineinfile: dest=/etc/default/docker
+#              line="export http_proxy="{{ http_proxy }}""
+#  when: "{{ http_proxy }}"
 
 - name: restart docker
   service: name=docker state=restarted
