@@ -17,3 +17,14 @@
   tasks:
     - user: name={{ user }} group={{ group }} groups="sudo,{{ group}}" password={{ passwd }} shell=/bin/bash state=present
     - file: path=/home/{{ user }}/.ssh/ssl state=directory
+
+- name: passwdless sudo
+  hosts: all
+  vars_files:
+     - default.yml
+  remote_user: "{{ remote_user }}"
+  sudo: yes
+  tasks: 
+    - file: path=/etc/sudoers.d/{{ user }} state=touch mode="0440" owner=root group=root
+    - lineinfile: dest=/etc/sudoers.d/{{ user }} 
+                  line="{{ user }} ALL = (root) NOPASSWD:ALL"
