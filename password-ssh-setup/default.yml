@@ -1,4 +1,4 @@
-user: ano223
+user: ano
 #Optionally set the user's password to this crypted value. 
 #See the user example in the github examples directory for
 #what this looks like in a playbook. See 
@@ -9,3 +9,4 @@ passwd: $6$QESoMbGmWq0U3T9w$HPuL4tJ5BU/80Yfw1jcyzLBc2/cMsklezLpHsxOUgADD3sUnqd9p
 remote_user: root
 group: "{{ user }}"
 ssh_user: root
+hostname: execd1

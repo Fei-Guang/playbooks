@@ -1,4 +1,12 @@
 ---
+- name: change host name
+  hosts: all
+  sudo: yes
+  vars_files:
+     - default.yml
+  tasks:
+    - hostname: name={{ hostname }}
+
 - name: creating {{ user }} group
   hosts: all
   sudo: yes
@@ -15,7 +23,7 @@
   remote_user: "{{ remote_user }}"
   sudo: yes
   tasks:
-    - user: name={{ user }} group={{ group }} groups="sudo,{{ group}}" password={{ passwd }} shell=/bin/bash state=present
+    - user: name={{ user }} group={{ group }} groups="root,{{ group}}" password={{ passwd }} shell=/bin/bash state=present
     - file: path=/home/{{ user }}/.ssh/ssl state=directory
 
 - name: passwdless sudo
