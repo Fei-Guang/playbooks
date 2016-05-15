@@ -2,6 +2,7 @@
 - name: change host name
   hosts: all
   sudo: yes
+  remote_user: "{{ remote_user }}"
   vars_files:
      - default.yml
   tasks:
