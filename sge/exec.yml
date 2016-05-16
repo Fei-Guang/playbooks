@@ -1,0 +1,15 @@
+---
+- hosts: master
+  vars_files:
+     - default.yml
+  roles:
+     - role: config-master
+  environment:
+     - SGE_ROOT: "{{ SGE_ROOT }}"
+
+
+- hosts: execd3
+  vars_files:
+     - default.yml
+  roles:
+     - role: exec

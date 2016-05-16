@@ -1,0 +1,17 @@
+---
+- name: add exection
+  become: yes
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ host_ip }} {{ host_name }}.local {{ host_name }}"
+
+- name: add new exec as an administrative host
+  become: yes
+  command: /opt/gridengine/bin/linux-x64/qconf -ah {{ host_name }}.local
+
+- name: display all administrative host
+  become: yes
+  command: /opt/gridengine/bin/linux-x64/qconf -sh
+  register: admin_list
+
+- debug: msg="administrative host:{{ admin_list.stdout_lines }}"
