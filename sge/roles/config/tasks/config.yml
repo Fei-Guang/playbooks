@@ -5,3 +5,9 @@
     dest: /etc/hosts
     line: "{{ host_ip }} {{ host_name }}.local {{ host_name }}"
 
+- name: add SSH authorized key
+  become: yes
+  authorized_key:
+        user=root
+        key="{{ lookup('file', '~/.ssh/id_rsa_sge.pub') }}"
+
