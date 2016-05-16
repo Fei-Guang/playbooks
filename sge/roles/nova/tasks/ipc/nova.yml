@@ -1,0 +1,9 @@
+---
+- name: create openrc
+  template: src=ipc/openrc.j2 dest=~/{{ name }}/openrc-v3 mode=0644
+
+- name: set user info
+  template: src=ipc/add-instance.j2 dest=~/{{ name }}/add-instance.sh mode=0744
+  
+- name: execute script to launch instance
+  command: /home/ubuntu/{{ name }}/add-instance.sh
