@@ -1,3 +1,6 @@
 host_name: execd1
 host_ip: 192.168.1.30
+SGE_ROOT: /opt/gridengine
+master_ip: 192.168.1.22
+master_host_name: master
 
