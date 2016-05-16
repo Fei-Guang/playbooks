@@ -8,7 +8,7 @@
      - SGE_ROOT: "{{ SGE_ROOT }}"
 
 
-- hosts: execd3
+- hosts: all
   vars_files:
      - default.yml
   roles:
