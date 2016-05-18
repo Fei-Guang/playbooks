@@ -1,0 +1,10 @@
+---
+- name:  append new exec to end of server list
+  become: yes
+  replace:
+    dest={{ SGE_ROOT }}/template/hosts4group.txt regexp='(hostlist .*)$'
+    replace='\1 {{ execd_name }}.local'
+
+- name: modify hosts4group
+  become: yes
+  command: "cd {{ SGE_ROOT }} && {{ SGE_ROOT }}/bin/linux-x64/qconf -Mhgrp template/hosts4group.txt"

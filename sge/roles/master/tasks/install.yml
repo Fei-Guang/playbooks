@@ -1,0 +1,15 @@
+---
+- name: install exection host
+  expect:
+    command: "cd /opt/gridengine && ./inst_sge -x" 
+    responses:
+      'Hit <RETURN> to continue >>': '\r'
+      'to use default [/opt/gridengine] >>': '\r'
+      'installation or press <RETURN> to use [default] >>': '\r'
+      "Stop the installation (WARNING: selecting 'n' will remove the detected cluster)": 'n'
+      'Do you want to remove the startup script for execd at this machine': 'n'
+      'Do you want to configure a different spool directory for this host': '\r'
+      'install the startup script that will start execd at machine boot': '\r'
+  register: install_sge
+
+- debug: msg="install sge:{{ install_sge.stdout_lines }}"

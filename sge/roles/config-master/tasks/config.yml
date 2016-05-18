@@ -5,13 +5,15 @@
     dest: /etc/hosts
     line: "{{ host_ip }} {{ host_name }}.local {{ host_name }}"
 
-- name: add new exec as an administrative host
+- name: add master
   become: yes
-  command: /opt/gridengine/bin/linux-x64/qconf -ah {{ host_name }}.local
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ master_ip }} {{ master_host_name }}.local {{ master_host_name }}"
 
-- name: display all administrative host
+- name: add SSH authorized key
   become: yes
-  command: /opt/gridengine/bin/linux-x64/qconf -sh
-  register: admin_list
+  authorized_key:
+        user=root
+        key="{{ lookup('file', '~/.ssh/id_rsa_sge.pub') }}"
 
-- debug: msg="administrative host:{{ admin_list.stdout_lines }}"

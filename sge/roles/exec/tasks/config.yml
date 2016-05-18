@@ -3,7 +3,7 @@
   become: yes
   lineinfile:
     dest: /etc/hosts
-    line: "{{ host_ip }} {{ host_name }}.local {{ host_name }}"
+    line: "{{ execd_ip }} {{ execd_name }}.local {{ execd_name }}"
 
 - name: add master
   become: yes
