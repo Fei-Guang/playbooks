@@ -11,7 +11,7 @@
        register: json_response
      - set_fact: InstanceId="{{ (json_response.stdout | from_json)['Instances']['Instance'][0]['InstanceId'] }}"
      - debug: msg="{{ InstanceId }}"
-     - shell: ". venv/bin/activate && aliyuncli ecs AllocateEipAddress"
+     - shell: ". venv/bin/activate && aliyuncli ecs AllocateEipAddress --InternetChargeType {{ InternetChargeType }}"
        args:
          chdir: "~"
          executable: /bin/bash

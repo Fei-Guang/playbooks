@@ -1,0 +1,11 @@
+---
+- name: instance show
+  hosts: all
+  vars_files:
+     - default.yml
+  tasks:
+     - shell: ". venv/bin/activate && aliyuncli ecs  DescribeInstanceTypes > ~/app/ecs-types.json"
+       args:
+         chdir: "~"
+         creates: ~/app/ecs-types.json
+         executable: /bin/bash
