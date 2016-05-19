@@ -1,8 +1,0 @@
----
-- hosts: all
-  vars_files:
-     - default.yml
-  roles:
-     - role: execd
-  environment:
-     - SGE_ROOT: "{{ SGE_ROOT }}"
