@@ -1,0 +1,11 @@
+#ano-svr1
+ano-svr2  ansible_ssh_user=ano
+#gate ansible_ssh_user=ceph
+#ano-svr1 ansible_ssh_user=ano
+#monit
+
+
+[IPC]
+#gate ansible_ssh_user=ceph
+#kube
+#monit

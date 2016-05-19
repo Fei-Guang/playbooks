@@ -1,0 +1,12 @@
+---
+- name: transform ecs input 
+  hosts: all
+  vars_files:
+     - default.yml
+  tasks:
+    - name: Set a instance file
+      template: >
+        src=templates/ecs.j2
+        dest=~/app/ecs.json
+     
+

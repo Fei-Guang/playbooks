@@ -1,0 +1,12 @@
+user: ce1
+passwd: ce123
+remote_user: ano
+group: ce1
+ssh_user: ano
+RegionId: cn-beijing
+ZoneId: cn-beijing-a
+InternetChargeType: PayByTraffic
+HostName: t1
+ImageId: m-25gcsntsr
+PrivateIpAddress: 192.168.1.5
+InstanceType: ecs.s1.small
