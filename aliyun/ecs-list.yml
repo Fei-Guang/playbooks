@@ -18,6 +18,6 @@
          chdir: "~"
          executable: /bin/bash
        register: json_response
-     - debug: msg="{{ item.HostName }}"
+     - debug: msg="{{ item.InstanceName }}"
        with_items: "{{ (json_response.stdout | from_json)['Instances']['Instance'] }}"
 
