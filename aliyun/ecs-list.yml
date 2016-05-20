@@ -18,6 +18,10 @@
          chdir: "~"
          executable: /bin/bash
        register: json_response
-     - debug: msg="{{ item.InstanceName }}"
+     - file: path="~/instances.txt" state=absent
+     - shell: "echo {{ item.InstanceName }} >> ~/instances.txt"
        with_items: "{{ (json_response.stdout | from_json)['Instances']['Instance'] }}"
-
+       no_log: True
+     - shell: "cat ~/instances.txt"
+       register: instances
+     - debug: msg="{{ instances.stdout_lines }}"
