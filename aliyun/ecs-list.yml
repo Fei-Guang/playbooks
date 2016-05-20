@@ -18,7 +18,6 @@
          chdir: "~"
          executable: /bin/bash
        register: json_response
-     - debug: msg="{{ item.value["HostName"] }}"
-       when: item.value["HostName"] is defined
-       with_list: "{{ (json_response.stdout | from_json)['Instances']['Instance'] }}"
+     - debug: msg="{{ item.HostName }}"
+       with_items: "{{ (json_response.stdout | from_json)['Instances']['Instance'] }}"
 
