@@ -1,0 +1,29 @@
+---
+- name: transform ecs input 
+  hosts: all
+  vars_files:
+     - default.yml
+  tasks:
+     - template: >
+        src=templates/ecs.j2
+        dest=~/app/ecs.json
+
+- name: instance show
+  hosts: all
+  vars_files:
+     - default.yml
+  tasks:
+     - shell: ". venv/bin/activate && aliyuncli ecs DescribeInstances --InstanceName {{ HostName}}"
+       args:
+         chdir: "~"
+         executable: /bin/bash
+       register: json_response
+     - set_fact: InstanceId="{{ (json_response.stdout | from_json)['Instances']['Instance'][0]['InstanceId'] }}"
+     - debug: msg="{{ InstanceId }}"
+     - shell: ". venv/bin/activate && aliyuncli ecs ModifyInstanceAttribute --InstanceId {{ InstanceId}} --HostName {{ HostName }}"
+       args:
+         chdir: "~"
+         executable: /bin/bash
+       register: json_response
+     - debug: msg="{{ (json_response.stdout | from_json) }}"
+

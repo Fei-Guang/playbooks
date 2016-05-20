@@ -1,0 +1,24 @@
+---
+- name: transform ecs input 
+  hosts: all
+  vars_files:
+     - default.yml
+  tasks:
+     - template: >
+        src=templates/ecs.j2
+        dest=~/app/ecs.json
+
+- name: instance show
+  hosts: all
+  vars_files:
+     - default.yml
+  tasks:
+     - shell: ". venv/bin/activate && aliyuncli ecs DescribeInstances"
+       args:
+         chdir: "~"
+         executable: /bin/bash
+       register: json_response
+     - debug: msg="{{ item.value["HostName"] }}"
+       when: item.value["HostName"] is defined
+       with_list: "{{ (json_response.stdout | from_json)['Instances']['Instance'] }}"
+
