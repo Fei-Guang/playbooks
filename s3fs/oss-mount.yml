@@ -1,0 +1,14 @@
+---
+- name: mount
+  hosts: all
+  vars_files:
+     - default.yml
+  remote_user: "{{ SSH_USER }}"
+  tasks:
+     - shell: "/usr/local/bin/ossfs {{ BUCKET }} {{ MOUNT }} {{ ENDPOINT }}"
+       args:
+         chdir: "~"
+         executable: /bin/bash
+       register: json_response
+     - debug: msg="{{ (json_response.stdout | from_json) }}"
+

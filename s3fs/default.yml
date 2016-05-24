@@ -1,9 +1,4 @@
-execd_ip: 192.168.1.5
-SGE_ROOT: /opt/gridengine
-execd_name: execd2
-virtual_free: 15G
-num_proc: 4
-queue_name: ceshi.q
-master_ip: 192.168.1.26
-master_host_name: master
-
+ENDPOINT: http://vpc100-oss-cn-beijing.aliyuncs.com
+BUCKET: anno-sge
+MOUNT: /opt/oss1
+SSH_USER: ceshi

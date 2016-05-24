@@ -14,4 +14,14 @@ passwd_file.assign("/etc/passwd-ossfs");
 
 
 
+Q: Could not connect at booting
 
+A: Try to add “_netdev” option to s3fs entry in fstab, it waits mounting until network up.
+A: Start netfs service on your instance, it loads fuse module to system(by modprobe)
+
+
+
+程序扫描ossfs挂载的目录，会转换成向OSS的请求，如果请求次数很多，会产生费用（1分钱/1万次）。如果是updatedb，可以通过修改/etc/updatedb.conf让它跳过。具体做法是：
+
+在PRUNEFS =后面加上fuse.ossfs
+在PRUNEPATHS =后面加上挂载的目录
