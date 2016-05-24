@@ -18,7 +18,6 @@
          chdir: "~"
          executable: /bin/bash
        register: json_response
-     - debug: msg="{{ json_response }}"
      - set_fact: ImageId="{{ (json_response.stdout | from_json)['Images']['Image'][0]['ImageId'] }}"
      - debug: msg="{{ ImageId }}"
 

@@ -1,5 +1,0 @@
----
-- include: config.yml
-#- include: install.yml
-#- include: post-inst.yml
-
