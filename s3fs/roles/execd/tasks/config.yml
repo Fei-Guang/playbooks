@@ -1,0 +1,27 @@
+---
+- name: add exection
+  become: yes
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ execd_ip }} {{ execd_name }}.local {{ execd_name }}"
+
+- name: add master
+  become: yes
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ master_ip }} {{ master_host_name }}.local {{ master_host_name }}"
+
+- name: add SSH authorized key
+  become: yes
+  authorized_key:
+        user=root
+        key="{{ lookup('file', '~/.ssh/id_rsa_sge.pub') }}"
+
+- name: mount nfs:
+  decome: yes
+  shell: "/bin/mount -t nfs -o nolock,nfsvers=3,vers=3 {{ master_ip }}:/mnt/xvdb1 /mnt/xvdb1"
+       args:
+         executable: /bin/bash
+
+		
+

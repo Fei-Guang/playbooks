@@ -1,0 +1,4 @@
+---
+- include: config-master.yml
+#- include: install.yml
+

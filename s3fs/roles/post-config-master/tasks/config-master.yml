@@ -1,0 +1,51 @@
+---
+- name: recreate new server list
+  become: yes
+  #ariables like $HOME and operations like "<", ">", "|", 
+  #and "&" will not work with command
+  shell: "./bin/linux-x64/qconf -shgrp @ceshi > hosts4group"
+  args:
+    chdir: "{{ SGE_ROOT }}"
+    creates: hosts4group
+    executable: /bin/bash
+
+- name:  append new exec to end of server list
+  become: yes
+  replace:
+    dest={{ SGE_ROOT }}/hosts4group regexp='(hostlist .*)$'
+    replace='\1 {{ execd_name }}.local'
+
+- name: modify hosts4group
+  become: yes
+  debug: msg=""
+  #command: "cd {{ SGE_ROOT }} && ./bin/linux-x64/qconf -Mhgrp {{ SGE_ROOT }}/hosts4group.txt"
+
+- name: recreate new queue file
+  become: yes
+  #ariables like $HOME and operations like "<", ">", "|", 
+  #and "&" will not work with command
+  shell: "./bin/linux-x64/qconf -sq ceshi.q > queue"
+  args:
+    chdir: "{{ SGE_ROOT }}"
+    creates: queue
+    executable: /bin/bash  
+
+- name: append new exec to queue 1
+  become: yes
+  replace:
+    dest={{ SGE_ROOT }}/queue regexp='(slots .*)$'
+    replace='\1,[{{ execd_name }}.local=4]'
+
+- name: append new exec to queue 2
+  become: yes
+  lineinfile:
+    dest: "{{ SGE_ROOT }}/queue"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^complex_values', line: 'complex_values     virtual_free={{ virtual_free }},num_proc={{ num_proc }}' }
+
+- name: modify queue from file
+  become: yes
+  debug: msg=""
+  #command: "cd {{ SGE_ROOT }} && ./bin/linux-x64/qconf -Mq queue.txt"

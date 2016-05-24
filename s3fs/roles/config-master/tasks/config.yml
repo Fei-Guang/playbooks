@@ -1,0 +1,19 @@
+---
+- name: add exection
+  become: yes
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ host_ip }} {{ host_name }}.local {{ host_name }}"
+
+- name: add master
+  become: yes
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ master_ip }} {{ master_host_name }}.local {{ master_host_name }}"
+
+- name: add SSH authorized key
+  become: yes
+  authorized_key:
+        user=root
+        key="{{ lookup('file', '~/.ssh/id_rsa_sge.pub') }}"
+

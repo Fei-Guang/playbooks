@@ -1,0 +1,17 @@
+//1 - keys specified on the command line
+//2 - was specified on the command line -o passwd_file=
+//3  - environment variables
+char* OSSACCESSKEYID     = getenv("OSSACCESSKEYID");
+char* OSSSECRETACCESSKEY = getenv("OSSSECRETACCESSKEY");
+//3a - from the OSS_CREDENTIAL_FILE environment variable
+OSS_CREDENTIAL_FILE = getenv("OSS_CREDENTIAL_FILE");
+// 4 - from the default location in the users home directory
+passwd_file.assign(HOME);
+passwd_file.append("/.passwd-ossfs");
+
+// 5 - from the system default location
+passwd_file.assign("/etc/passwd-ossfs"); 
+
+
+
+

@@ -1,0 +1,20 @@
+---
+- name: add exection
+  become: yes
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ execd_ip }} {{ execd_name }}.local {{ execd_name }}"
+
+- name: add new exec as an administrative host
+  become: yes
+  shell: "{{ SGE_ROOT }}/bin/linux-x64/qconf -ah {{ execd_name }}.local"
+  args:
+    chdir: "{{ SGE_ROOT }}"
+    executable: /bin/bash
+
+- name: display all administrative host
+  become: yes
+  command: "{{ SGE_ROOT }}/bin/linux-x64/qconf -sh"
+  register: admin_list
+
+- debug: msg="administrative host:{{ admin_list.stdout_lines }}"
