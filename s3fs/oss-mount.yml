@@ -3,7 +3,7 @@
   hosts: all
   vars_files:
      - default.yml
-  remote_user: "{{ SSH_USER }}"
+  remote_user: "{{ REMOTE_USER }}"
   tasks:
      - shell: "/usr/local/bin/ossfs {{ BUCKET }} {{ MOUNT }} {{ ENDPOINT }}"
        args:

@@ -1,4 +1,4 @@
 ENDPOINT: http://vpc100-oss-cn-beijing.aliyuncs.com
 BUCKET: anno-sge
 MOUNT: /opt/oss1
-SSH_USER: ceshi
+REMOTE_USER: ceshi
