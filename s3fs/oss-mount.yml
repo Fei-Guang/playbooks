@@ -1,11 +1,22 @@
 ---
+- name: add SSH authorized key
+  hosts: all
+  sudo: yes
+  vars_files:
+     - default.yml
+  remote_user: ano
+  tasks:
+    - authorized_key:
+        user={{ REMOTE_USER }}
+        key="{{ lookup('file', '~/.ssh/rsa_key_pair_1.pub') }}"
+
 - name: mount
   hosts: all
   vars_files:
      - default.yml
   remote_user: "{{ REMOTE_USER }}"
   tasks:
-     - shell: "/usr/local/bin/ossfs {{ BUCKET }} {{ MOUNT }} {{ ENDPOINT }}"
+     - shell: "/usr/local/bin/ossfs {{ BUCKET }} {{ MOUNT }} -ourl={{ ENDPOINT }}"
        args:
          chdir: "~"
          executable: /bin/bash
