@@ -5,7 +5,7 @@
     "IoOptimized": "none", 
     "InternetChargeType": "PayByTraffic", 
     "Description": "", 
-    "HostName": "{{ HostName }}",
+    "HostName": "{{ HostName }}.local",
     "InstanceName": "{{ HostName }}", 	
     "ClusterId": "", 
     "ImageId": "{{ ImageId }}",
@@ -13,7 +13,9 @@
     "InstanceChargeType": "PostPaid", 
     "InstanceNetworkType": "vpc",
     "VSwitchId": "vsw-25hjbr6b7",
-    "PrivateIpAddress": "{{ PrivateIpAddress }}",	
+    {% if PrivateIpAddress is  defined %}
+    "PrivateIpAddress": "{{ PrivateIpAddress }}",
+    {% endif %}
     "InstanceType": "{{ InstanceType }}",        
     "SecurityGroupId": "sg-25i8ahfb7" 
     
