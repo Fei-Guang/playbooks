@@ -1,0 +1,8 @@
+---
+- name: config ssh to disable host verify
+  become: yes
+  lineinfile: dest=/etc/ssh/ssh_config
+              line={{ item }}
+  with_items:
+    - StrictHostKeyChecking no
+    - UserKnownHostsFile=/dev/null
