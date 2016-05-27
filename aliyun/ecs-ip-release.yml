@@ -1,0 +1,29 @@
+---
+- name: instance delete by name
+  hosts: all
+  vars_files:
+     - default.yml
+  tasks:
+     - shell: ". venv/bin/activate && aliyuncli ecs DescribeInstances --InstanceName {{ HostName }}"
+       args:
+         chdir: "~"
+         executable: /bin/bash
+       register: json_response
+     - set_fact:
+         InstanceId="{{ (json_response.stdout | from_json)['Instances']['Instance'][0]['InstanceId'] }}" 
+         AllocationId="{{ (json_response.stdout | from_json)['Instances']['Instance'][0]['EipAddress']['AllocationId'] }}"
+         EIP="{{ (json_response.stdout | from_json)['Instances']['Instance'][0]['EipAddress']['IpAddress'] }}"
+     - debug: msg="{{ InstanceId }}"
+     - shell: ". venv/bin/activate && aliyuncli ecs UnassociateEipAddress --AllocationId {{ AllocationId }} --InstanceId {{ InstanceId }}"
+       args:
+         chdir: "~"
+         executable: /bin/bash
+       register: json_response
+     
+     - debug: msg="{{ (json_response.stdout | from_json) }}"
+     - shell: ". venv/bin/activate && aliyuncli ecs ReleaseEipAddress --AllocationId {{ AllocationId }}"
+       args:
+         chdir: "~"
+         executable: /bin/bash
+       register: json_response
+     - debug: msg="{{ (json_response.stdout | from_json) }}"
